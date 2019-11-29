@@ -177,11 +177,9 @@
       
         <p>泛型，即参数化类型，就是将操作的类型用一个参数来表示，可以用在类、接口和方法中，分别称为泛型类、泛型接口、泛型方法。</p>
 <h2 id="1、一个错误的例子"><a href="#1、一个错误的例子" class="headerlink" title="1、一个错误的例子"></a>1、一个错误的例子</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List alist = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        alist.add(<span class="string">"aaaa"</span>);</span><br><span class="line">        alist.add(<span class="number">100</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; alist.size(); i++) &#123;</span><br><span class="line">            String item = String.valueOf(alist.get(i));</span><br><span class="line">            System.out.println(<span class="string">"generic test, item = "</span> + item);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这段代码中声明了一个List，可以存放任意类型，虽然编译运行都没有问题，但是十分不建议这么做。因为你无法保证List中保存的数据类型的一致性，如果把<code>String.valueOf(alist.get(i))</code>替换成<code>(String)alist.get(i)</code>,编译通过了运行时却会报错。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; alist = new ArrayList&lt;&gt;(); # 定义时指定参数类型</span><br><span class="line">alist.add(<span class="string">"aaaa"</span>);</span><br><span class="line">alist.add(100); # 编译时就会报错</span><br></pre></td></tr></table></figure>
-
-
+        
+          <a class="article-more-a" href="/2019/11/29/%E6%B3%9B%E5%9E%8B/#more">more >></a>
+        
       
 
       
