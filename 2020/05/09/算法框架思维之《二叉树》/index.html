@@ -17,7 +17,7 @@
 <meta property="og:description" content="算法题目有无穷多，但是解决问题的思路是可以总结的。对于二叉树类型的题目来说，掌握了树的多种遍历方式，就能够解决大部分的算法题。 一、 二叉树的遍历方式前序遍历、中序遍历、后续遍历，区别在于对当前节点的处理时机。 1234567public void traversal(TreeNode root)&amp;#123;    # 前序遍历    traversal(root.left);    # 中序遍历">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;adamhu.github.io&#x2F;2020&#x2F;05&#x2F;09&#x2F;%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6%E6%80%9D%E7%BB%B4%E4%B9%8B%E3%80%8A%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%8B&#x2F;1589176336648.png">
-<meta property="og:updated_time" content="2020-05-11T06:42:00.364Z">
+<meta property="og:updated_time" content="2020-05-11T08:33:03.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;adamhu.github.io&#x2F;2020&#x2F;05&#x2F;09&#x2F;%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6%E6%80%9D%E7%BB%B4%E4%B9%8B%E3%80%8A%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%8B&#x2F;1589176336648.png">
   
@@ -219,6 +219,24 @@
 <p>运用上述思路，第一反应就是如果某个节点的<code>left</code>部分与<code>right</code>部分是镜像的，那么以该节点为树根的树就是镜像的。要保证左右两部分镜像，即<code>left</code>部分的左节点与<code>right</code>部分的右节点镜像，<code>left</code>部分的右节点与<code>right</code>部分的左节点镜像。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSymmetric</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> isMirror(root, root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMirror</span><span class="params">(TreeNode t1, TreeNode t2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (t1 == <span class="keyword">null</span> &amp;&amp; t2 == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (t1 == <span class="keyword">null</span> || t2 == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> (t1.val == t2.val)</span><br><span class="line">        &amp;&amp; isMirror(t1.right, t2.left)</span><br><span class="line">        &amp;&amp; isMirror(t1.left, t2.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="三、常见题型"><a href="#三、常见题型" class="headerlink" title="三、常见题型"></a>三、常见题型</h2><ol>
+<li><p>可能路径</p>
+<p>用一个列表来记录走过的节点，返回之前记得remove最后一个节点</p>
+</li>
+<li><p>最优路径</p>
+<p>如果是从根节点开始的，就简化成可能路径的遍历；</p>
+<p>如果不一定经过根节点，就用<code>root/left/right</code>三部分做递归；</p>
+</li>
+<li><p>二叉搜索树相关</p>
+<p>利用好搜索树的性质，left.val&lt;root.val&lt;right.val</p>
+</li>
+<li><p>二叉树序列化与反序列化</p>
+<p>注意<code>null</code>节点也要存储</p>
+</li>
+<li><p>遍历</p>
+<p>上面讲过，除了递归，还可以借助stack数据结构用迭代实现</p>
+</li>
+</ol>
 
       
 
@@ -342,7 +360,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、-二叉树的遍历方式"><span class="toc-number">1.</span> <span class="toc-text">一、 二叉树的遍历方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、二叉树解题逻辑"><span class="toc-number">2.</span> <span class="toc-text">二、二叉树解题逻辑</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、-二叉树的遍历方式"><span class="toc-number">1.</span> <span class="toc-text">一、 二叉树的遍历方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、二叉树解题逻辑"><span class="toc-number">2.</span> <span class="toc-text">二、二叉树解题逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、常见题型"><span class="toc-number">3.</span> <span class="toc-text">三、常见题型</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -471,6 +489,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">book</a>
               </li>
              
@@ -480,10 +502,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>
@@ -534,7 +552,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">前期追深度，否则会华而不实；后期追广度，否则会坐井观天。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">前期追深度，否则会华而不实；\n后期追广度，否则会坐井观天。</div>
   	  	
     	</section>
     
