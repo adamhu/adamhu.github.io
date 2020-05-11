@@ -17,7 +17,7 @@
 <meta property="og:description" content="算法题目有无穷多，但是解决问题的思路是可以总结的。对于二叉树类型的题目来说，掌握了树的多种遍历方式，就能够解决大部分的算法题。 一、 二叉树的遍历方式前序遍历、中序遍历、后续遍历，区别在于对当前节点的处理时机。 1234567public void traversal(TreeNode root)&amp;#123;    # 前序遍历    traversal(root.left);    # 中序遍历">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;adamhu.github.io&#x2F;2020&#x2F;05&#x2F;09&#x2F;%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6%E6%80%9D%E7%BB%B4%E4%B9%8B%E3%80%8A%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%8B&#x2F;1589176336648.png">
-<meta property="og:updated_time" content="2020-05-11T06:21:48.739Z">
+<meta property="og:updated_time" content="2020-05-11T06:42:00.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;adamhu.github.io&#x2F;2020&#x2F;05&#x2F;09&#x2F;%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6%E6%80%9D%E7%BB%B4%E4%B9%8B%E3%80%8A%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%8B&#x2F;1589176336648.png">
   
@@ -211,9 +211,13 @@
 <h2 id="二、二叉树解题逻辑"><a href="#二、二叉树解题逻辑" class="headerlink" title="二、二叉树解题逻辑"></a>二、二叉树解题逻辑</h2><p>每个节点都可以有左右子节点，所以一颗二叉树可以看成由多个【root，left，right】这样的子树构成，天然的适合用递归的方法去解决问题。</p>
 <p>只要出现了二叉树，就要去想一想问题的解是否可以由<code>root/left/right</code>三部分递归解决。</p>
 <p><img src="/2020/05/09/%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6%E6%80%9D%E7%BB%B4%E4%B9%8B%E3%80%8A%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%8B/1589176336648.png" alt="1589176336648"></p>
-<p>比如：LeetCode第100题相同的树，给定两个二叉树，编写一个函数来检验它们是否相同。如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。</p>
+<p>比如：LeetCode第100题《相同的树》，给定两个二叉树，编写一个函数来检验它们是否相同。如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。</p>
 <p>运用上述思路，如果root部分相同，同时left和right部分也相同，那结果就是true，否则就应该返回false。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameTree</span><span class="params">(TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (p == <span class="keyword">null</span> &amp;&amp; q == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (p == <span class="keyword">null</span> || q == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (p.val == q.val &amp;&amp; isSameTree(p.left, q.left) &amp;&amp; isSameTree(p.right, q.right))</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameTree</span><span class="params">(TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (p == <span class="keyword">null</span> &amp;&amp; q == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (p == <span class="keyword">null</span> || q == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 这里其实就是二叉树的先序遍历</span></span><br><span class="line">    <span class="keyword">if</span> (p.val == q.val &amp;&amp; isSameTree(p.left, q.left) &amp;&amp; isSameTree(p.right, q.right))</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再如：LeetCode第101题《对称二叉树》，判断二叉树是否是镜像对称的。</p>
+<p>运用上述思路，第一反应就是如果某个节点的<code>left</code>部分与<code>right</code>部分是镜像的，那么以该节点为树根的树就是镜像的。要保证左右两部分镜像，即<code>left</code>部分的左节点与<code>right</code>部分的右节点镜像，<code>left</code>部分的右节点与<code>right</code>部分的左节点镜像。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSymmetric</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> isMirror(root, root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMirror</span><span class="params">(TreeNode t1, TreeNode t2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (t1 == <span class="keyword">null</span> &amp;&amp; t2 == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (t1 == <span class="keyword">null</span> || t2 == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> (t1.val == t2.val)</span><br><span class="line">        &amp;&amp; isMirror(t1.right, t2.left)</span><br><span class="line">        &amp;&amp; isMirror(t1.left, t2.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -467,10 +471,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">book</a>
               </li>
              
@@ -480,6 +480,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>
