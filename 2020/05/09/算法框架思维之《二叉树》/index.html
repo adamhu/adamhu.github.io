@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="adam blog">
 <meta property="og:description" content="算法题目有无穷多，但是解决问题的思路是可以总结的。对于二叉树类型的题目来说，掌握了树的多种遍历方式，就能够解决大部分的算法题。 一、 二叉树的遍历方式前序遍历、中序遍历、后续遍历，区别在于对当前节点的处理时机。 1234567public void traversal(TreeNode root)&amp;#123;    # 前序遍历    traversal(root.left);    # 中序遍历">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-11T03:04:14.600Z">
+<meta property="og:updated_time" content="2020-05-11T03:07:42.296Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="adam blog" type="application/atom+xml">
@@ -198,6 +198,8 @@
         <p>算法题目有无穷多，但是解决问题的思路是可以总结的。对于二叉树类型的题目来说，掌握了树的多种遍历方式，就能够解决大部分的算法题。</p>
 <h2 id="一、-二叉树的遍历方式"><a href="#一、-二叉树的遍历方式" class="headerlink" title="一、 二叉树的遍历方式"></a>一、 二叉树的遍历方式</h2><p>前序遍历、中序遍历、后续遍历，区别在于对当前节点的处理时机。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">traversal</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    # 前序遍历</span><br><span class="line">    traversal(root.left);</span><br><span class="line">    # 中序遍历</span><br><span class="line">    traversal(root.right);</span><br><span class="line">    # 后续遍历</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
 
 <p>层次遍历，可以借助队列一层一层访问，也可以采用层号+深度优先来实现。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># Queue保存每一层的节点</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">levelTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    Queue queue = <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</span><br><span class="line">    queue.add(root);</span><br><span class="line">    <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; queue.size(); i++) &#123;</span><br><span class="line">            TreeNode node = queue.poll();</span><br><span class="line">            # 每一层的节点</span><br><span class="line">            <span class="keyword">if</span>(node.left != <span class="keyword">null</span>) queue.add(node.left);    </span><br><span class="line">            <span class="keyword">if</span>(node.right != <span class="keyword">null</span>) queue.add(node.right);    </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -458,10 +460,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">book</a>
               </li>
              
@@ -471,6 +469,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>

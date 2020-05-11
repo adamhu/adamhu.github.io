@@ -196,15 +196,9 @@
         <p>算法题目有无穷多，但是解决问题的思路是可以总结的。对于二叉树类型的题目来说，掌握了树的多种遍历方式，就能够解决大部分的算法题。</p>
 <h2 id="一、-二叉树的遍历方式"><a href="#一、-二叉树的遍历方式" class="headerlink" title="一、 二叉树的遍历方式"></a>一、 二叉树的遍历方式</h2><p>前序遍历、中序遍历、后续遍历，区别在于对当前节点的处理时机。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">traversal</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    # 前序遍历</span><br><span class="line">    traversal(root.left);</span><br><span class="line">    # 中序遍历</span><br><span class="line">    traversal(root.right);</span><br><span class="line">    # 后续遍历</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>层次遍历，可以借助队列一层一层访问，也可以采用层号+深度优先来实现。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># Queue保存每一层的节点</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">levelTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    Queue queue = <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</span><br><span class="line">    queue.add(root);</span><br><span class="line">    <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; queue.size(); i++) &#123;</span><br><span class="line">            TreeNode node = queue.poll();</span><br><span class="line">            # 每一层的节点</span><br><span class="line">            <span class="keyword">if</span>(node.left != <span class="keyword">null</span>) queue.add(node.left);    </span><br><span class="line">            <span class="keyword">if</span>(node.right != <span class="keyword">null</span>) queue.add(node.right);    </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># level表示当前访问到哪一层</span><br><span class="line">Map&lt;Integer, List&lt;TreeNode&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">levelTraversal</span><span class="params">(TreeNode root, <span class="keyword">int</span> level)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(map.containsKey(level)) map.get(level).add(root);</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        List&lt;TreeNode&gt; nodes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        nodes.add(root);</span><br><span class="line">        map.put(level, nodes);</span><br><span class="line">    &#125;</span><br><span class="line">    levelTraversal(root.left, level+<span class="number">1</span>);</span><br><span class="line">    levelTraversal(root.right, level+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
+        
+          <a class="article-more-a" href="/2020/05/09/%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6%E6%80%9D%E7%BB%B4%E4%B9%8B%E3%80%8A%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%8B/#more">more >></a>
+        
       
 
       
@@ -651,10 +645,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">book</a>
               </li>
              
@@ -664,6 +654,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>
